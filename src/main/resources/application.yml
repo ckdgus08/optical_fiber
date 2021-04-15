@@ -1,0 +1,18 @@
+spring:
+  influxdb:
+    url: http://localhost:8086
+    username: root
+    password: 1234
+    database: optical_fiber
+    retention-policy: autogen
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 30m
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+  config: classpath:log4j2.yml
