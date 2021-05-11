@@ -22,6 +22,15 @@
 
 ---
 
+### 도커 명령어 
+```dockerfile
+docker pull jjeaby/influxfana
+docker run --name influxDB_WITH_Grafana -d -p 8086:8086 -p 8083:8083 -p 3000:3000 -p 4000:4000 -v /opt/influxDB:/var/lib/influxdb jjeaby/influxfana
+
+## influx 콘솔 접속
+docker exec -it influxDB_WITH_Grafana influx
+```
+
 ### Granafana(db 정보 시각화 툴) 접속하기
 
 [링크](http://localhost:3000)
