@@ -12,9 +12,11 @@ window.onload = function () {
     document.getElementById("button_1").onclick = function () {
 
         if (push[0]) {
+            document.getElementById("button_1").style.height = "50px";
             document.getElementById("button_1").classList.remove("push")
             document.getElementById("button_1").classList.add("unpush")
         } else {
+            document.getElementById("button_1").style.height = "150px";
             document.getElementById("button_1").classList.add("push")
             document.getElementById("button_1").classList.remove("unpush")
         }
@@ -26,9 +28,11 @@ window.onload = function () {
     document.getElementById("button_2").onclick = function () {
 
         if (push[1]) {
+            document.getElementById("button_2").style.height = "50px";
             document.getElementById("button_2").classList.remove("push")
             document.getElementById("button_2").classList.add("unpush")
         } else {
+            document.getElementById("button_2").style.height = "150px";
             document.getElementById("button_2").classList.add("push")
             document.getElementById("button_2").classList.remove("unpush")
         }
@@ -40,9 +44,11 @@ window.onload = function () {
     document.getElementById("button_3").onclick = function () {
 
         if (push[2]) {
+            document.getElementById("button_3").style.height = "50px";
             document.getElementById("button_3").classList.remove("push")
             document.getElementById("button_3").classList.add("unpush")
         } else {
+            document.getElementById("button_3").style.height = "150px";
             document.getElementById("button_3").classList.add("push")
             document.getElementById("button_3").classList.remove("unpush")
         }
