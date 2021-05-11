@@ -2,6 +2,11 @@ package com.github.ckdgus08.service;
 
 
 import com.github.ckdgus08.entity.OpticalData;
+import net.sf.yad2xx.Device;
+import net.sf.yad2xx.FTDIException;
+import net.sf.yad2xx.FTDIInterface;
+import net.sf.yad2xx.mpsse.Spi;
+import net.sf.yad2xx.mpsse.SpiMode;
 import org.influxdb.dto.BoundParameterQuery;
 import org.influxdb.dto.Point;
 import org.influxdb.dto.Query;
@@ -29,6 +34,32 @@ public class DataServiceTest {
     private InfluxDBTemplate<Point> influxDBTemplate;
 
     @Test
+    void serial() throws IOException, FTDIException {
+
+        int board_rate = 9600;
+
+        Device[] devices = FTDIInterface.getDevices();
+
+        if (devices.length == 0) {
+            System.out.println("No devices!!");
+            throw new IllegalStateException("연결된 기기가 없습니다.");
+        }
+
+        Device device = devices[0];
+
+        Spi spi = new Spi(device, board_rate, SpiMode.M0, false);
+
+        byte[] bytes = spi.readBits(1000);
+
+        for (byte aByte : bytes) {
+            System.out.println("aByte = " + aByte);
+        }
+
+        spi.close();
+
+    }
+
+    @Test
     void write_data() throws IOException {
         //given
 
@@ -38,7 +69,7 @@ public class DataServiceTest {
         // when
         Instant instant = Instant.now();
 
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 10000; i++) {
             String value = list.get(i).split(",")[1].split("\\.")[0];
             instant = instant.plusMillis(20);
 

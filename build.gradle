@@ -41,6 +41,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+    // uart 통신
+    compile files("libs/yad2xxJava-1.0-jar-with-dependencies.jar")
     // 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

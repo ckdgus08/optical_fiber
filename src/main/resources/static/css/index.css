@@ -1,0 +1,104 @@
+:root {
+    ---blue: #369bde;
+    ---gray-blue: rgba(54, 155, 222, 0.4);
+    ---dark-gray: #272b30;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.slide__main-button {
+    display: flex;
+    height: 300px;
+    width: 1200px;
+    margin: 30px auto 0 auto;
+    padding: 15px 15px 15px 15px;
+    box-shadow: 0 15px 20px 0 rgb(0 0 0);
+    background: whitesmoke;
+    text-align: center;
+}
+
+.slide__main-block {
+    display: flex;
+    height: 30px;
+    width: 1200px;
+    margin: 30px auto 0 auto;
+    padding: 15px 15px 15px 15px;
+    box-shadow: 0 15px 20px 0 rgb(0 0 0);
+    background: whitesmoke;
+    text-align: center;
+}
+
+.slide__sub-block {
+    display: flex;
+    height: 200px;
+    width: 1200px;
+    margin: 30px auto 0 auto;
+    padding: 15px 15px 15px 15px;
+    box-shadow: 0 15px 20px 0 rgb(0 0 0);
+    background: whitesmoke;
+    text-align: center;
+}
+
+.sub-block__part {
+    background: snow;
+    margin-right: 30px;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    width: 30%;
+}
+
+.randomTag {
+    font-size: 10px;
+}
+
+.number_input {
+    width: 50px;
+}
+
+.value {
+
+}
+
+.line {
+    background: black;
+    margin-right: 30px;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    width: 30%;
+    height: 20px;
+}
+
+.button {
+    margin-top: 230px;
+    margin-left: 255px;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.push {
+    background-color: red;
+}
+
+.unpush {
+    background-color: wheat;
+}
+
+.ok {
+    background-color: lawngreen;
+}
+
+.no {
+    background-color: indianred;
+}
+

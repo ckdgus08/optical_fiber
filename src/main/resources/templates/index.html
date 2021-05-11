@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" th:href="@{/css/index.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-slider.css}">
+<script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/slider11.0.2-min.js}"></script>
+
+<div class="slide__main-button">
+    <div class="button unpush" id="button_1">
+    </div>
+    <div class="button unpush" id="button_2">
+    </div>
+    <div class="button unpush" id="button_3">
+    </div>
+</div>
+<div class="slide__main-block">
+    <div class="line">
+    </div>
+    <div class="line">
+    </div>
+    <div class="line">
+    </div>
+    <div class="line">
+    </div>
+</div>
+
+<div class="slide__sub-block">
+    <div class="sub-block__part">
+        <div>송신부</div>
+        <b class="randomTag">0</b>
+        <input class="span2" data-slider-max="5000" data-slider-min="0" data-slider-step="1"
+               data-slider-value="[0,3000]" id="random"
+               name="random"
+               type="text" value=""/>
+        <b class="randomTag">5000</b>
+
+        <label for="number_1">목표 dx 최소값</label>
+        <input class="number_input" id="dx" type="number" value="43">
+        <div class="dx_result"></div>
+    </div>
+    <div class="sub-block__part">
+        <div>첫번째 지점</div>
+        <label for="number_1">투과율[%]</label>
+        <input class="number_input" id="number_1" type="number" value="43">
+
+        <div class="value" id="value_1"></div>
+    </div>
+    <div class="sub-block__part">
+        <div>두번째 지점</div>
+        <label for="number_2">투과율[%]</label>
+        <input class="number_input" id="number_2" type="number" value="41">
+
+        <div class="value" id="value_2"></div>
+
+    </div>
+    <div class="sub-block__part">
+        <div>세번째 지점</div>
+        <label for="number_3">투과율[%]</label>
+        <input class="number_input" id="number_3" type="number" value="37">
+
+        <div class="value" id="value_3"></div>
+    </div>
+    <div class="sub-block__part">
+        <div>수신부</div>
+        <div>측정값</div>
+    </div>
+</div>
