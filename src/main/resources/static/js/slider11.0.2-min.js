@@ -878,23 +878,6 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
                     if (Array.isArray(val)) {
                         document.getElementsByClassName("randomTag")[0].innerText = parseFloat(val[0])
                         document.getElementsByClassName("randomTag")[1].innerText = parseFloat(val[1])
-
-                        let number1 = document.getElementById("number_1").value;
-                        let number2 = document.getElementById("number_2").value;
-                        let number3 = document.getElementById("number_3").value;
-
-                        let value1 = document.getElementById("value_1");
-                        let value2 = document.getElementById("value_2");
-                        let value3 = document.getElementById("value_3");
-
-                        let first = parseInt(val[1]) * (parseInt(number1) / 100);
-                        let second = first * (parseInt(number1) / 100);
-                        let third = second * (parseInt(number1) / 100);
-
-                        value1.innerText = parseInt(first).toString();
-                        value2.innerText = parseInt(second).toString();
-                        value3.innerText = parseInt(third).toString();
-
                         return val[0] + " : " + val[1];
                     } else {
                         return val;

@@ -6,11 +6,11 @@
 <script th:src="@{/js/slider11.0.2-min.js}"></script>
 
 <div class="slide__main-button">
+    <div class="button unpush" id="button_0">
+    </div>
     <div class="button unpush" id="button_1">
     </div>
     <div class="button unpush" id="button_2">
-    </div>
-    <div class="button unpush" id="button_3">
     </div>
 </div>
 <div class="slide__main-block">
@@ -63,5 +63,9 @@
     <div class="sub-block__part">
         <div>수신부</div>
         <div>측정값</div>
+
+        <input class="number_input" id="target_value" type="number" value="1500">
+        <div id="target_value_result"></div>
+
     </div>
 </div>
