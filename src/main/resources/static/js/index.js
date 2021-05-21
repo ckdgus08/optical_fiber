@@ -1,7 +1,7 @@
 push = [false, false, false];
 let array = [
     [false, false, false], [false, true, false],
-    [true, false, false], [true, true, false],
+    [true, false, false], [false, false, true],
     [true, true, false], [true, false, true],
     [false, true, true], [true, true, true]];
 value_cache = [];
@@ -31,30 +31,18 @@ window.onload = function () {
 
         change_button_status(2)
     }
+    let data = getData();
 
-    document.getElementById("target_value").onchange = function () {
-        let value = document.getElementById("target_value").value;
-
-        let dx = document.getElementById("dx").value;
-
-        for (let i = 0; i < value_cache.length; i++) {
-            if (value_cache[i] - dx / 2 < value && value_cache[i] + dx / 2 >= value) {
-                push[0] = !array[i][0];
-                push[1] = !array[i][1];
-                push[2] = !array[i][2];
-
-                change_button_status(0)
-                change_button_status(1)
-                change_button_status(2)
-
-                document.getElementById("target_value_result").classList.add("ok")
-                document.getElementById("target_value_result").innerText = "완료"
-                return;
-            }
+    document.getElementById("target_value").onclick = function () {
+        for (const value of data) {
+            setTimeout(function exec() {
+                go_change(value)
+            }, 0);
         }
-        document.getElementById("target_value_result").classList.add("no")
-        document.getElementById("target_value_result").innerText = "적절하지 않은 수"
-
+        document.getElementById("target_value_result").innerText = "완료"
+        // document.getElementById("target_value_result").classList.add("no")
+        // document.getElementById("target_value_result").classList.remove("ok")
+        // document.getElementById("target_value_result").innerText = "적절하지 않은 수"
     }
 }
 
@@ -70,6 +58,27 @@ function change_button_status(index) {
     }
     push[index] = !push[index]
     change(push)
+}
+
+function go_change(value) {
+    let dx = document.getElementById("dx").value;
+    document.getElementById("target_value_result").innerText = value;
+
+    for (let i = 0; i < value_cache.length; i++) {
+        if (value_cache[i] - dx / 2 < value && value_cache[i] + dx / 2 >= value) {
+            push[0] = !array[i][0];
+            push[1] = !array[i][1];
+            push[2] = !array[i][2];
+
+            change_button_status(0)
+            change_button_status(1)
+            change_button_status(2)
+
+            document.getElementById("target_value_result").classList.add("ok")
+            document.getElementById("target_value_result").classList.remove("no")
+            break;
+        }
+    }
 }
 
 function check() {
@@ -160,4 +169,24 @@ function change(isPush) {
     value3.innerText = parseInt(initValue).toString();
 
     return parseInt(initValue);
+}
+
+function getData() {
+
+    result = [];
+    $.ajax({
+        async: false,
+        method: 'GET',
+        url: 'http://localhost:8080/api/data',
+        dataType: 'json',
+        success: function (data) {
+            if (data.length > 0) {
+                let i = 0;
+                for (const datum of data) {
+                    result[i++] = datum;
+                }
+            }
+        }
+    })
+    return result;
 }
