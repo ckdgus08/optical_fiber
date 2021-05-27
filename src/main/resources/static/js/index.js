@@ -1,7 +1,7 @@
 push = [false, false, false];
 let array = [
-    [false, false, false], [false, true, false],
-    [true, false, false], [false, false, true],
+    [false, false, false], [true, false, false],
+    [false, true, false], [false, false, true],
     [true, true, false], [true, false, true],
     [false, true, true], [true, true, true]];
 value_cache = [];
@@ -12,6 +12,7 @@ window.onload = function () {
 
     change(push);
     check();
+
 
     document.getElementById("dx").onchange = function () {
         check();
@@ -64,8 +65,11 @@ function go_change(value) {
     let dx = document.getElementById("dx").value;
     document.getElementById("target_value_result").innerText = value;
 
-    for (let i = 0; i < value_cache.length; i++) {
-        if (value_cache[i] - dx / 2 < value && value_cache[i] + dx / 2 >= value) {
+    for (let i = 1; i < value_cache.length; i++) {
+        let temp = dx;
+        if (i !== value_cache.length - 1 && temp < (value_cache[i] - value_cache[i + 1]))
+            temp = (value_cache[i] - value_cache[i + 1])
+        if (value_cache[i] - temp / 2 < value && value_cache[i] + temp / 2 >= value) {
             push[0] = !array[i][0];
             push[1] = !array[i][1];
             push[2] = !array[i][2];
@@ -83,7 +87,6 @@ function go_change(value) {
 
 function check() {
     let dx = document.getElementById("dx").value;
-
 
     let value = [];
 
@@ -177,7 +180,7 @@ function getData() {
     $.ajax({
         async: false,
         method: 'GET',
-        url: 'http://localhost:8080/api/data',
+        url: 'http://localhost:8081/api/data',
         dataType: 'json',
         success: function (data) {
             if (data.length > 0) {
