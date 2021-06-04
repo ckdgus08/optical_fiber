@@ -66,10 +66,7 @@ function go_change(value) {
     document.getElementById("target_value_result").innerText = value;
 
     for (let i = 1; i < value_cache.length; i++) {
-        let temp = dx;
-        if (i !== value_cache.length - 1 && temp < (value_cache[i] - value_cache[i + 1]))
-            temp = (value_cache[i] - value_cache[i + 1])
-        if (value_cache[i] - temp / 2 < value && value_cache[i] + temp / 2 >= value) {
+        if (value_cache[i] - (value_cache[i] * 0.05) < value && value_cache[i] + (value_cache[i] * 0.05) >= value) {
             push[0] = !array[i][0];
             push[1] = !array[i][1];
             push[2] = !array[i][2];
