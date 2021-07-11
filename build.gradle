@@ -30,8 +30,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     // db
-    implementation 'org.influxdb:influxdb-java'
-    implementation 'com.github.miwurster:spring-data-influxdb:1.8'
+//    implementation 'org.influxdb:influxdb-java'
+//    implementation 'com.github.miwurster:spring-data-influxdb:1.8'
 
     // log 관련
     implementation 'org.springframework.boot:spring-boot-starter-log4j2'
@@ -41,7 +41,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // uart 통신
+    // spi 통신
     compile files("libs/yad2xxJava-1.0-jar-with-dependencies.jar")
     // 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
