@@ -1,6 +1,6 @@
 spring:
   influxdb:
-    url: http://localhost:8086
+    url: http://3.37.4.250:8086
     username: root
     password: 1234
     database: optical_fiber

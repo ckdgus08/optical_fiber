@@ -1,29 +1,47 @@
 package com.github.ckdgus08.service;
 
 
+import com.github.ckdgus08.entity.OpticalData;
 import net.sf.yad2xx.Device;
 import net.sf.yad2xx.FTDIException;
 import net.sf.yad2xx.FTDIInterface;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
+import java.lang.reflect.Method;
 
+@SpringBootTest
 public class DataServiceTest {
 
-    @Test
-    void serial() throws IOException, FTDIException {
+    @Autowired
+    DataService dataService;
 
-        int board_rate = 9600;
+    @Test
+    void tttt() {
+        //given
+        for (int i = 0; i < 10000; i++) {
+            dataService.write(new OpticalData("1", (int) (Math.random() * 4096)));
+        }
+        //when
+
+        //then
+    }
+
+    @Test
+    void spiConnection() throws FTDIException, NoSuchMethodException {
 
         String libraryVersion = FTDIInterface.getLibraryVersion();
         System.out.println("libraryVersion is " + libraryVersion);
 
+        int deviceCount = FTDIInterface.getDeviceCount();
+        System.out.println("deviceCount = " + deviceCount);
+
+        Method getDevices = FTDIInterface.class.getMethod("getDevices");
+
+        System.out.println("getDevices = " + getDevices);
+
         Device[] devices = FTDIInterface.getDevices();
-
-        for (Device device : devices) {
-            System.out.println(device.getType());
-        }
-
 
 //        if (devices.length == 0) {
 //            System.out.println("No devices!!");
