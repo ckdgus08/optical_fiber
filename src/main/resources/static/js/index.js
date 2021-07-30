@@ -7,6 +7,10 @@ let 버튼_눌린상태_배열 = [
 
 버튼_현재상태 = [false, false, false]
 
+let 데이터_수신_상태 = false
+
+let timeoutId = 0;
+
 function 버튼_클릭(index) {
     if (버튼_현재상태[index])
         버튼_눌려지지않은_모습_시각화(index)
@@ -21,7 +25,9 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
 
     document.getElementById("target_value_result").innerText = 수신부데이터
 
-    for (let i = 1; i < 수신부_결과값_배열.length; i++)
+    console.log(버튼_현재상태)
+
+    for (let i = 1; i < 수신부_결과값_배열.length; i++) {
 
         if (수신부_결과값_배열[i] * 0.96 < 수신부데이터 && 수신부_결과값_배열[i] * 1.04 >= 수신부데이터) {
             버튼_현재상태[0] = !버튼_눌린상태_배열[i][0]
@@ -34,15 +40,22 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
 
             document.getElementById("target_value_result").classList.add("ok")
             document.getElementById("target_value_result").classList.remove("no")
-            break
+            document.getElementById("target_value_status").classList.add("ok")
+            document.getElementById("target_value_status").classList.remove("no")
+            document.getElementById("target_value_status").innerText = "정상 범위"
+            return
         }
+    }
+
+    document.getElementById("target_value_status").classList.add("no")
+    document.getElementById("target_value_status").classList.remove("ok")
+    document.getElementById("target_value_status").innerText = "정상 범위 벗어난 값"
 }
 
-
 function 버튼_눌려지지않은_모습_시각화(index) {
-    document.getElementById("button_" + index).style.height = "150px"
-    document.getElementById("button_" + index).classList.add("push")
-    document.getElementById("button_" + index).classList.remove("unpush")
+    document.getElementById("button_" + index).style.height = "50px"
+    document.getElementById("button_" + index).classList.add("unpush")
+    document.getElementById("button_" + index).classList.remove("push")
 }
 
 function 버튼_눌려진_모습_시각화(index) {
@@ -151,6 +164,25 @@ function 기록된_데이터_가져오기() {
     return result
 }
 
+function 실시간_데이터_가져오기() {
+
+    let result = []
+    $.ajax({
+        async: false,
+        method: 'GET',
+        url: 'http://localhost:8081/api/singleData',
+        dataType: 'json',
+        success: function (data) {
+            if (data.length > 0) {
+                let i = 0
+                for (const element of data)
+                    result[i++] = element
+            }
+        }
+    })
+    return result
+}
+
 window.onload = function () {
 
     new Slider('#random', {})
@@ -172,13 +204,24 @@ window.onload = function () {
     document.getElementById("button_2").onclick = function () {
         버튼_클릭(2)
     }
-    let 데이터배열 = 기록된_데이터_가져오기()
-
     document.getElementById("target_value").onclick = function () {
-        for (const 데이터 of 데이터배열)
-            setTimeout(function exec() {
-                수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
-            }, 0)
-        document.getElementById("target_value_result").innerText = "완료"
+        if (데이터_수신_상태) {
+            document.getElementById("target_value").innerText = "중단"
+            데이터_수신_상태 = false
+            clearTimeout(timeoutId)
+            document.getElementById("target_value_result").innerText = "데이터 수신 멈춤"
+            document.getElementById("target_value_status").classList.remove("ok")
+            document.getElementById("target_value_status").classList.remove("no")
+            document.getElementById("target_value_status").innerText = ""
+        } else {
+            document.getElementById("target_value").innerText = "시작"
+            데이터_수신_상태 = true
+            timeoutId = setInterval(
+                function exec() {
+                    let 데이터 = 실시간_데이터_가져오기()
+                    수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
+                }, 300
+            )
+        }
     }
 }
