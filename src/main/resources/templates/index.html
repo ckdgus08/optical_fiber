@@ -6,6 +6,11 @@
 <script th:src="@{/js/slider11.0.2-min.js}"></script>
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 
+<div class="slide__main-data">
+    <iframe height="50%"
+            src="http://3.37.4.250:3000" width="100%"></iframe>
+</div>
+
 <div class="slide__main-button">
     <div class="button unpush" id="button_0">
     </div>
@@ -27,14 +32,10 @@
 
 <div class="slide__sub-block">
     <div class="sub-block__part">
-        <div>송신부</div>
-        <b class="randomTag">0</b>
-        <input class="span2" data-slider-max="5000" data-slider-min="0" data-slider-step="1"
-               data-slider-value="[0,2900]" id="random"
-               name="random"
-               type="text" value=""/>
-        <b class="randomTag">5000</b>
-
+        <div>
+            <div>송신부</div>
+            <input id="init_value" value="3900">
+        </div>
         <label for="number_1">목표 dx 최소값</label>
         <input class="number_input" id="dx" type="number" value="70">
         <div class="dx_result"></div>
@@ -42,14 +43,14 @@
     <div class="sub-block__part">
         <div>첫번째 지점</div>
         <label for="number_1">투과율[%]</label>
-        <input class="number_input" id="number_1" type="number" value="70">
+        <input class="number_input" id="number_1" type="number" value="65">
 
         <div class="value" id="value_1"></div>
     </div>
     <div class="sub-block__part">
         <div>두번째 지점</div>
         <label for="number_2">투과율[%]</label>
-        <input class="number_input" id="number_2" type="number" value="65">
+        <input class="number_input" id="number_2" type="number" value="50">
 
         <div class="value" id="value_2"></div>
 
@@ -57,7 +58,7 @@
     <div class="sub-block__part">
         <div>세번째 지점</div>
         <label for="number_3">투과율[%]</label>
-        <input class="number_input" id="number_3" type="number" value="50">
+        <input class="number_input" id="number_3" type="number" value="20">
 
         <div class="value" id="value_3"></div>
     </div>

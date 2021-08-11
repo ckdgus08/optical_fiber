@@ -50,6 +50,10 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
     document.getElementById("target_value_status").classList.add("no")
     document.getElementById("target_value_status").classList.remove("ok")
     document.getElementById("target_value_status").innerText = "정상 범위 벗어난 값"
+    버튼_현재상태 = [true, true, true]
+    버튼_클릭(0)
+    버튼_클릭(1)
+    버튼_클릭(2)
 }
 
 function 버튼_눌려지지않은_모습_시각화(index) {
@@ -100,7 +104,7 @@ function 목표dx_실패_시각화(구간최소값, 최소값) {
 function 수신부_이론값_계산하기(isPush) {
     // isPush 예시 [true, false, true]
 
-    let 초기값 = parseInt(document.getElementsByClassName("randomTag")[1].innerHTML)
+    let 초기값 = parseInt(document.getElementById("init_value").value)
     let 투과율1 = parseInt(document.getElementById("number_1").value)
     let 투과율2 = parseInt(document.getElementById("number_2").value)
     let 투과율3 = parseInt(document.getElementById("number_3").value)
@@ -119,7 +123,7 @@ function 수신부_이론값_계산하기(isPush) {
 // 각 지점 값 계산하고_결과반영
 function 각_지점_계산하고_결과반영(isPush) {
 
-    let 초기값 = parseInt(document.getElementsByClassName("randomTag")[1].innerHTML)
+    let 초기값 = parseInt(document.getElementById("init_value").value)
     let 투과율1번지점 = parseInt(document.getElementById("number_1").value)
     let 투과율2번지점 = parseInt(document.getElementById("number_2").value)
     let 투과율3번지점 = parseInt(document.getElementById("number_3").value)
@@ -185,8 +189,6 @@ function 실시간_데이터_가져오기() {
 
 window.onload = function () {
 
-    new Slider('#random', {})
-
     각_지점_계산하고_결과반영(버튼_현재상태)
     목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
 
@@ -205,6 +207,7 @@ window.onload = function () {
         버튼_클릭(2)
     }
     document.getElementById("target_value").onclick = function () {
+
         if (데이터_수신_상태) {
             document.getElementById("target_value").innerText = "중단"
             데이터_수신_상태 = false
@@ -222,6 +225,12 @@ window.onload = function () {
                     수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
                 }, 300
             )
+            setTimeout(
+                function exec() {
+                    document.getElementById("init_value").value = document.getElementById("target_value_result").innerText
+                },500
+            )
         }
+
     }
 }
