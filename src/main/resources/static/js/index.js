@@ -21,15 +21,41 @@ function 버튼_클릭(index) {
     각_지점_계산하고_결과반영(버튼_현재상태)
 }
 
+const MAX_VALUE = 4000;
+const INIT_MIN_VALUE = 2800;
+let 최소_dx값;
+
+function SET_ABNORMAL() {
+    document.getElementById("target_value_status").classList.add("no")
+    document.getElementById("target_value_status").classList.remove("ok")
+    document.getElementById("target_value_status").innerText = "정상 범위 벗어난 값"
+    버튼_현재상태 = [true, true, true]
+    버튼_클릭(0)
+    버튼_클릭(1)
+    버튼_클릭(2)
+}
+
 function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데이터) {
 
     document.getElementById("target_value_result").innerText = 수신부데이터
 
-    console.log(버튼_현재상태)
+    if (수신부데이터 >= MAX_VALUE) {
+        SET_ABNORMAL();
+        return
+    }
 
-    for (let i = 1; i < 수신부_결과값_배열.length; i++) {
+    if (수신부데이터 >= INIT_MIN_VALUE) {
+        이론값_배열_범위_재설정();
+        최소_dx값 = 최소_dx값_구하기()
+        document.getElementById("init_value").value = document.getElementById("target_value_result").innerText
+    }
 
-        if (수신부_결과값_배열[i] * 0.96 < 수신부데이터 && 수신부_결과값_배열[i] * 1.04 >= 수신부데이터) {
+    console.log(수신부_결과값_배열)
+
+    for (let i = 0; i < 수신부_결과값_배열.length; i++) {
+        console.log(i + "min :" + (수신부_결과값_배열[i] - (최소_dx값 / 2.0)))
+        console.log(i + "max :" + (수신부_결과값_배열[i] + (최소_dx값 / 2.0)))
+        if ((수신부_결과값_배열[i] - (최소_dx값 / 2.0)) < 수신부데이터 && (수신부_결과값_배열[i] + (최소_dx값 / 2.0)) >= 수신부데이터) {
             버튼_현재상태[0] = !버튼_눌린상태_배열[i][0]
             버튼_현재상태[1] = !버튼_눌린상태_배열[i][1]
             버튼_현재상태[2] = !버튼_눌린상태_배열[i][2]
@@ -38,8 +64,6 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
             버튼_클릭(1)
             버튼_클릭(2)
 
-            document.getElementById("target_value_result").classList.add("ok")
-            document.getElementById("target_value_result").classList.remove("no")
             document.getElementById("target_value_status").classList.add("ok")
             document.getElementById("target_value_status").classList.remove("no")
             document.getElementById("target_value_status").innerText = "정상 범위"
@@ -47,13 +71,7 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
         }
     }
 
-    document.getElementById("target_value_status").classList.add("no")
-    document.getElementById("target_value_status").classList.remove("ok")
-    document.getElementById("target_value_status").innerText = "정상 범위 벗어난 값"
-    버튼_현재상태 = [true, true, true]
-    버튼_클릭(0)
-    버튼_클릭(1)
-    버튼_클릭(2)
+    SET_ABNORMAL()
 }
 
 function 버튼_눌려지지않은_모습_시각화(index) {
@@ -68,25 +86,38 @@ function 버튼_눌려진_모습_시각화(index) {
     document.getElementById("button_" + index).classList.remove("unpush")
 }
 
-function 목표하는_dx값이_구간의_최소dx보다_큰지_체크하기() {
-    let 목표_dx값 = parseInt(document.getElementById("dx").value)
-
-    for (let i = 0; i < 버튼_눌린상태_배열.length; i++)
+function 이론값_배열_범위_재설정() {
+    for (let i = 0; i < 버튼_눌린상태_배열.length; i++) {
         수신부_결과값_배열[i] = 수신부_이론값_계산하기(버튼_눌린상태_배열[i])
+    }
+}
 
+function 최소_dx값_구하기() {
     let 최소값 = 10000000
-    for (let i = 0; i < 수신부_결과값_배열.length; i++)
+    for (let i = 0; i < 수신부_결과값_배열.length; i++) {
         for (let j = 0; j < 수신부_결과값_배열.length; j++) {
             let 구간차이값 = Math.abs(수신부_결과값_배열[i] - 수신부_결과값_배열[j])
             if (구간차이값 !== 0 && 최소값 > 구간차이값)
                 최소값 = 구간차이값
         }
+    }
+    return 최소값
+}
+
+function 목표하는_dx값이_구간의_최소dx보다_큰지_체크하기() {
+    let 목표_dx값 = parseInt(document.getElementById("dx").value)
+    이론값_배열_범위_재설정();
+
+    최소_dx값 = 최소_dx값_구하기()
 
     let 구간최소값 = document.getElementsByClassName("dx_result")[0]
-    if (목표_dx값 <= 최소값)
-        목표dx_성공_시각화(구간최소값, 최소값)
-    else
-        목표dx_실패_시각화(구간최소값, 최소값)
+    if (목표_dx값 <= 최소_dx값) {
+        목표dx_성공_시각화(구간최소값, 최소_dx값)
+        return true
+    } else {
+        목표dx_실패_시각화(구간최소값, 최소_dx값)
+        return false
+    }
 }
 
 function 목표dx_성공_시각화(구간최소값, 최소값) {
@@ -188,28 +219,27 @@ function 실시간_데이터_가져오기() {
 }
 
 window.onload = function () {
-
-    각_지점_계산하고_결과반영(버튼_현재상태)
-    목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
-
     document.getElementById("dx").onchange = function () {
         목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
     }
     document.getElementById("button_0").onclick = function () {
         버튼_클릭(0)
     }
-
     document.getElementById("button_1").onclick = function () {
         버튼_클릭(1)
     }
-
     document.getElementById("button_2").onclick = function () {
         버튼_클릭(2)
     }
     document.getElementById("target_value").onclick = function () {
 
+        if (!목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()) {
+            alert("목표 dx값을 재조정해주세요.")
+            return
+        }
+
         if (데이터_수신_상태) {
-            document.getElementById("target_value").innerText = "중단"
+            document.getElementById("target_value").innerText = "시작"
             데이터_수신_상태 = false
             clearTimeout(timeoutId)
             document.getElementById("target_value_result").innerText = "데이터 수신 멈춤"
@@ -217,7 +247,8 @@ window.onload = function () {
             document.getElementById("target_value_status").classList.remove("no")
             document.getElementById("target_value_status").innerText = ""
         } else {
-            document.getElementById("target_value").innerText = "시작"
+            document.getElementById("init_value").value = document.getElementById("target_value_result").innerText
+            document.getElementById("target_value").innerText = "중단"
             데이터_수신_상태 = true
             timeoutId = setInterval(
                 function exec() {
@@ -225,12 +256,6 @@ window.onload = function () {
                     수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
                 }, 300
             )
-            setTimeout(
-                function exec() {
-                    document.getElementById("init_value").value = document.getElementById("target_value_result").innerText
-                },500
-            )
         }
-
     }
 }
