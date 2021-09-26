@@ -735,7 +735,7 @@ FodyWeavers.xsd
 *.msi
 *.msix
 *.msm
-*.msp
+*.mspi
 
 # JetBrains Rider
 .idea/
