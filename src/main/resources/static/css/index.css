@@ -33,6 +33,15 @@
     text-align: center;
 }
 
+.slide__main-chart {
+    display: flex;
+    width: 1200px;
+    margin: 30px auto 0 auto;
+    padding: 15px 15px 15px 15px;
+    box-shadow: 0 15px 20px 0 rgb(0 0 0);
+    background: whitesmoke;
+    text-align: center;
+}
 .slide__main-block {
     display: flex;
     height: 30px;
@@ -112,3 +121,6 @@
     background-color: indianred;
 }
 
+div#target_value_result {
+font-size: 30px;
+}

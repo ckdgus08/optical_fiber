@@ -1,38 +1,27 @@
 ### 광섬유를 활용하여 측정된 웹상에서 데이터 모니터링
 
-문서 업데이트 예정.
+개발환경 셋팅
 
-### 개발환경
+1. source code download
 
-1. macOS
-2. intellij
-3. spring boot
-4. java 11
+![이미지](https://github.com/ckdgus08/optical_fiber/blob/master/src/main/resources/static/image/example_download.JPG?raw=true)
 
----
 
-### 개발환경 셋팅
+#### 1. FTDI VCP 드라이버 설치
 
-* 롬복
-    1. intellij - Preferencse - Plugins - lombok install
-    2. intellij - Preferencse - annotaion 검색 - Enable annotation processing 체크
-* OS 별 CRLF 차이
-    1. window 사용자 : git config --global core.autocrlf true
-    2. linux, mac, unix 사용자 : git config --global core.autocrlf input
+```text
+키트 사용을 위해선 FTDI VCP 드라이버 설치를 해야 합니다. 
 
----
+Onedrive CDM21228_Setup 파일 설치 혹은 https://ftdichip.com/drivers/vcp-drivers/ 홈페이지를 통해 다운로드하여 설치합니다. 
+```
+[다운로드 링크](https://ftdichip.com/drivers/vcp-drivers/)
 
-### 도커 명령어 
-```dockerfile
-docker pull jjeaby/influxfana
-docker run --name influxDB_WITH_Grafana -d -p 8086:8086 -p 8083:8083 -p 3000:3000 -p 4000:4000 -v /opt/influxDB:/var/lib/influxdb jjeaby/influxfana
-
-## influx 콘솔 접속
-docker exec -it influxDB_WITH_Grafana influx
+#### 2. 설치 확인
+```text
+설치를 하고 난 뒤 [내컴퓨터] – [장치 관리자]에 들어가면 
+ 포트(COM & LP) - USB serial Port가 나옵니다.
 ```
 
-### Granafana(db 정보 시각화 툴) 접속하기
+[그림파일 참고](https://seoultechackr-my.sharepoint.com/:w:/r/personal/dkim_seoultech_ac_kr/_layouts/15/Doc.aspx?sourcedoc=%7B97B085EA-5BE2-4192-9639-03A38A203C89%7D&file=FTDI%20%EC%99%80%20Labview%20%EC%97%B0%EB%8F%99%EB%B2%95.docx&action=default&mobileredirect=true)
 
-[링크](http://localhost:3000)
-
-아이디 : admin 비밀번호 : admin
+#### 3. 

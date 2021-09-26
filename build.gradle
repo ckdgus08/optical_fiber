@@ -12,9 +12,6 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-    all {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-    }
 }
 
 repositories {
@@ -29,20 +26,6 @@ dependencies {
     // 타임리프
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-    // db
-    implementation 'org.influxdb:influxdb-java'
-    implementation 'com.github.miwurster:spring-data-influxdb:1.8'
-
-    // log 관련
-    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.1'
-
-    // 롬복
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    // spi 통신
-    compile files("libs/yad2xxJava-0.3-with-dependencies.jar")
     // 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

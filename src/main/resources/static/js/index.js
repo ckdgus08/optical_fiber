@@ -50,11 +50,7 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
         document.getElementById("init_value").value = document.getElementById("target_value_result").innerText
     }
 
-    console.log(수신부_결과값_배열)
-
     for (let i = 0; i < 수신부_결과값_배열.length; i++) {
-        console.log(i + "min :" + (수신부_결과값_배열[i] - (최소_dx값 / 2.0)))
-        console.log(i + "max :" + (수신부_결과값_배열[i] + (최소_dx값 / 2.0)))
         if ((수신부_결과값_배열[i] - (최소_dx값 / 2.0)) < 수신부데이터 && (수신부_결과값_배열[i] + (최소_dx값 / 2.0)) >= 수신부데이터) {
             버튼_현재상태[0] = !버튼_눌린상태_배열[i][0]
             버튼_현재상태[1] = !버튼_눌린상태_배열[i][1]
@@ -111,6 +107,7 @@ function 목표하는_dx값이_구간의_최소dx보다_큰지_체크하기() {
     최소_dx값 = 최소_dx값_구하기()
 
     let 구간최소값 = document.getElementsByClassName("dx_result")[0]
+
     if (목표_dx값 <= 최소_dx값) {
         목표dx_성공_시각화(구간최소값, 최소_dx값)
         return true
@@ -121,15 +118,15 @@ function 목표하는_dx값이_구간의_최소dx보다_큰지_체크하기() {
 }
 
 function 목표dx_성공_시각화(구간최소값, 최소값) {
-    구간최소값.innerHTML = "최소 dx = " + 최소값
+    구간최소값.innerHTML = "최소 dx = " + Math.round(최소값)
     구간최소값.classList.add("ok")
     구간최소값.classList.remove("no")
 }
 
 function 목표dx_실패_시각화(구간최소값, 최소값) {
-    구간최소값.innerHTML = "최소 dx = " + 최소값
-    구간최소값.classList.add("ok")
-    구간최소값.classList.remove("no")
+    구간최소값.innerHTML = "최소 dx = " + Math.round(최소값)
+    구간최소값.classList.add("no")
+    구간최소값.classList.remove("ok")
 }
 
 function 수신부_이론값_계산하기(isPush) {
@@ -219,8 +216,11 @@ function 실시간_데이터_가져오기() {
 }
 
 window.onload = function () {
+
     document.getElementById("dx").onchange = function () {
-        목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
+        if (!목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()) {
+            alert("목표 dx값을 조정해주세요.")
+        }
     }
     document.getElementById("button_0").onclick = function () {
         버튼_클릭(0)
@@ -232,11 +232,6 @@ window.onload = function () {
         버튼_클릭(2)
     }
     document.getElementById("target_value").onclick = function () {
-
-        if (!목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()) {
-            alert("목표 dx값을 재조정해주세요.")
-            return
-        }
 
         if (데이터_수신_상태) {
             document.getElementById("target_value").innerText = "시작"
@@ -253,6 +248,7 @@ window.onload = function () {
             timeoutId = setInterval(
                 function exec() {
                     let 데이터 = 실시간_데이터_가져오기()
+                    목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
                     수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
                 }, 300
             )
