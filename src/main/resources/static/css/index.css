@@ -24,7 +24,7 @@
 }
 .slide__main-button {
     display: flex;
-    height: 300px;
+    height: 100px;
     width: 1200px;
     margin: 30px auto 0 auto;
     padding: 15px 15px 15px 15px;
@@ -96,7 +96,7 @@
 }
 
 .button {
-    margin-top: 230px;
+    margin-top: 30px;
     margin-left: 255px;
     font-size: 18px;
     text-align: center;

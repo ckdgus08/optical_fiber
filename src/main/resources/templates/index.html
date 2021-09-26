@@ -3,6 +3,7 @@
 <link rel="stylesheet" th:href="@{/css/index.css}">
 <link rel="stylesheet" th:href="@{/css/bootstrap-slider.css}">
 <script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/chart.min.js}"></script>
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 
 <div class="slide__main-button">
@@ -27,7 +28,7 @@
 <div class="slide__sub-block">
     <div class="sub-block__part">
         <div>
-            <div>송신부</div>
+            <div>송신부 초기값</div>
             <input id="init_value" value="0">
         </div>
         <label for="number_1">목표 dx 최소값</label>
@@ -63,6 +64,8 @@
         <button class="number_input" id="target_value" type="number">시작</button>
         <div id="target_value_result"></div>
         <div id="target_value_status"></div>
-
     </div>
+</div>
+<div class="slide__main-chart">
+    <canvas id="myChart" width="800px" height="250px"></canvas>
 </div>

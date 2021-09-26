@@ -11,13 +11,13 @@ let 데이터_수신_상태 = false
 
 let timeoutId = 0;
 
-function 버튼_클릭(index) {
-    if (버튼_현재상태[index])
-        버튼_눌려지지않은_모습_시각화(index)
-    else
+function 버튼_위치_상태(index, status) {
+    버튼_현재상태[index] = status
+    if (status) {
         버튼_눌려진_모습_시각화(index)
-
-    버튼_현재상태[index] = !버튼_현재상태[index]
+    } else {
+        버튼_눌려지지않은_모습_시각화(index)
+    }
     각_지점_계산하고_결과반영(버튼_현재상태)
 }
 
@@ -29,21 +29,19 @@ function SET_ABNORMAL() {
     document.getElementById("target_value_status").classList.add("no")
     document.getElementById("target_value_status").classList.remove("ok")
     document.getElementById("target_value_status").innerText = "정상 범위 벗어난 값"
-    버튼_현재상태 = [true, true, true]
-    버튼_클릭(0)
-    버튼_클릭(1)
-    버튼_클릭(2)
+    버튼_위치_상태(0, false)
+    버튼_위치_상태(1, false)
+    버튼_위치_상태(2, false)
 }
 
+
 function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데이터) {
-
     document.getElementById("target_value_result").innerText = 수신부데이터
-
     if (수신부데이터 >= MAX_VALUE) {
         SET_ABNORMAL();
         return
     }
-
+    // 4000 * 0.65 * 오차 ==  2800 이상일때 초기값 재설정
     if (수신부데이터 >= INIT_MIN_VALUE) {
         이론값_배열_범위_재설정();
         최소_dx값 = 최소_dx값_구하기()
@@ -52,13 +50,9 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
 
     for (let i = 0; i < 수신부_결과값_배열.length; i++) {
         if ((수신부_결과값_배열[i] - (최소_dx값 / 2.0)) < 수신부데이터 && (수신부_결과값_배열[i] + (최소_dx값 / 2.0)) >= 수신부데이터) {
-            버튼_현재상태[0] = !버튼_눌린상태_배열[i][0]
-            버튼_현재상태[1] = !버튼_눌린상태_배열[i][1]
-            버튼_현재상태[2] = !버튼_눌린상태_배열[i][2]
-
-            버튼_클릭(0)
-            버튼_클릭(1)
-            버튼_클릭(2)
+            버튼_위치_상태(0, 버튼_눌린상태_배열[i][0])
+            버튼_위치_상태(1, 버튼_눌린상태_배열[i][1])
+            버튼_위치_상태(2, 버튼_눌린상태_배열[i][2])
 
             document.getElementById("target_value_status").classList.add("ok")
             document.getElementById("target_value_status").classList.remove("no")
@@ -139,12 +133,15 @@ function 수신부_이론값_계산하기(isPush) {
 
     let 이론값 = 초기값
 
-    if (isPush[0])
+    if (isPush[0]) {
         이론값 = 이론값 * 투과율1 / 100
-    if (isPush[1])
+    }
+    if (isPush[1]) {
         이론값 = 이론값 * 투과율2 / 100
-    if (isPush[2])
+    }
+    if (isPush[2]) {
         이론값 = 이론값 * 투과율3 / 100
+    }
     return 이론값
 }
 
@@ -162,38 +159,22 @@ function 각_지점_계산하고_결과반영(isPush) {
 
     let 수신부값 = 초기값
 
-    if (isPush[0])
-        수신부값 = 수신부값 * 투과율1번지점 / 100
+    if (isPush[0]) {
+        수신부값 = Math.round(수신부값 * 투과율1번지점 / 100)
+    }
     _1번지점텍스트.innerText = 수신부값.toString()
 
-    if (isPush[1])
-        수신부값 = 수신부값 * 투과율2번지점 / 100
+    if (isPush[1]) {
+        수신부값 = Math.round(수신부값 * 투과율2번지점 / 100)
+    }
     _2번지점텍스트.innerText = 수신부값.toString()
 
-    if (isPush[2])
-        수신부값 = 수신부값 * 투과율3번지점 / 100
+    if (isPush[2]) {
+        수신부값 = Math.round(수신부값 * 투과율3번지점 / 100)
+    }
     _3번지점텍스트.innerText = 수신부값.toString()
 
     return 수신부값
-}
-
-function 기록된_데이터_가져오기() {
-
-    let result = []
-    $.ajax({
-        async: false,
-        method: 'GET',
-        url: 'http://localhost:8081/api/data',
-        dataType: 'json',
-        success: function (data) {
-            if (data.length > 0) {
-                let i = 0
-                for (const element of data)
-                    result[i++] = element
-            }
-        }
-    })
-    return result
 }
 
 function 실시간_데이터_가져오기() {
@@ -215,7 +196,61 @@ function 실시간_데이터_가져오기() {
     return result
 }
 
+let chart;
+let dataList = [];
+
+function initChart() {
+    const labels = [];
+    for (let i = 1; i <= 40; i++) {
+        labels.push(" ")
+        dataList.push(0)
+    }
+    const data = {
+        labels: labels,
+        datasets: [
+            {
+                pointRadius: 0,
+                spanGaps: true,
+                label: '실시간 데이터 그래프',
+                data: dataList,
+                borderColor: "rgba(222,45,63,0.5)",
+                backgroundColor: "rgba(22,45,63,0.7)",
+            }
+        ]
+    };
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            animation: false,
+            scales: {
+                x: {},
+                y: {
+                    min: 0,
+                    max: 4100
+                }
+            }
+        },
+    };
+    chart = new Chart(document.getElementById("myChart"),
+        config
+    )
+}
+
+function updateChart(value) {
+    if (dataList.length >= 40) {
+        dataList.shift()
+    }
+    dataList.push(value)
+
+    chart.data.datasets.forEach(dataset => {
+        dataset.data = dataList;
+    });
+    chart.update();
+}
+
 window.onload = function () {
+    initChart()
 
     document.getElementById("dx").onchange = function () {
         if (!목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()) {
@@ -223,13 +258,13 @@ window.onload = function () {
         }
     }
     document.getElementById("button_0").onclick = function () {
-        버튼_클릭(0)
+        버튼_위치_상태(0, !버튼_현재상태[0])
     }
     document.getElementById("button_1").onclick = function () {
-        버튼_클릭(1)
+        버튼_위치_상태(1, !버튼_현재상태[1])
     }
     document.getElementById("button_2").onclick = function () {
-        버튼_클릭(2)
+        버튼_위치_상태(2, !버튼_현재상태[2])
     }
     document.getElementById("target_value").onclick = function () {
 
@@ -237,20 +272,20 @@ window.onload = function () {
             document.getElementById("target_value").innerText = "시작"
             데이터_수신_상태 = false
             clearTimeout(timeoutId)
-            document.getElementById("target_value_result").innerText = "데이터 수신 멈춤"
+            document.getElementById("target_value_result").innerText = "수신 멈춤"
             document.getElementById("target_value_status").classList.remove("ok")
             document.getElementById("target_value_status").classList.remove("no")
             document.getElementById("target_value_status").innerText = ""
         } else {
-            document.getElementById("init_value").value = document.getElementById("target_value_result").innerText
             document.getElementById("target_value").innerText = "중단"
             데이터_수신_상태 = true
             timeoutId = setInterval(
                 function exec() {
                     let 데이터 = 실시간_데이터_가져오기()
+                    updateChart(데이터[0])
                     목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
                     수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
-                }, 300
+                }, 250
             )
         }
     }
