@@ -10,7 +10,7 @@
 * 다른 위치에 다운시 경로가 달라져 에러 발생 할 수 있음.
 ```
 
-![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/example_download.jpg?raw=true)
+![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/example_download.JPG?raw=true)
 
 #### 2. intellij(개발툴) 다운로드
 
