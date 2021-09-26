@@ -1,3 +1,5 @@
+let 공인아이피 = '127.0.0.1'
+
 let 버튼_눌린상태_배열 = [
     [false, false, false], [true, false, false],
     [false, true, false], [false, false, true],
@@ -34,6 +36,7 @@ function SET_ABNORMAL() {
     버튼_위치_상태(2, false)
 }
 
+let temp = 0;
 
 function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데이터) {
     document.getElementById("target_value_result").innerText = 수신부데이터
@@ -61,7 +64,12 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
         }
     }
 
-    SET_ABNORMAL()
+    if (temp >= 2) {
+        SET_ABNORMAL()
+        temp = 0;
+        return
+    }
+    temp++;
 }
 
 function 버튼_눌려지지않은_모습_시각화(index) {
@@ -178,12 +186,11 @@ function 각_지점_계산하고_결과반영(isPush) {
 }
 
 function 실시간_데이터_가져오기() {
-
     let result = []
     $.ajax({
         async: false,
         method: 'GET',
-        url: 'http://localhost:8081/api/singleData',
+        url: 'http://' + 공인아이피 + ':8081/api/singleData',
         dataType: 'json',
         success: function (data) {
             if (data.length > 0) {

@@ -48,7 +48,7 @@ Onedrive CDM21228_Setup 파일 설치 혹은 https://ftdichip.com/drivers/vcp-dr
 ```text
 C:\optical_fiber\moduleToFile - 바로가기.exe 파일 실행
 
-모듈과 컴퓨터사이에 SPI 통신을 하여 데이터를 수신함.
+모듈과 컴퓨터 사이에 SPI 통신을 하여 데이터를 수신함.
 수신된 데이터는 C:\optical_fiber\src\main\resources\static\sample_data\data.txt
 에 기록됨. (계속해서 덮어쓰기 되는 방식이라, 항상 데이터는 한줄만 표시됨)
 
@@ -83,7 +83,7 @@ Started OpticalFiberApplication in ~~~ 이라는 문구가 나타나면 정상�
 
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/process7.jpg?raw=true)
 
-#### 8. 웹사이트 접속
+#### 8. 웹사이트 정상작동 확인
 
 ```text
 chrome 브라우저를 열고 http://localhost:8081/에 접속한다.
@@ -93,7 +93,43 @@ chrome 브라우저를 열고 http://localhost:8081/에 접속한다.
 
 ```text
 아래 이미지와 같은 화면이 나타나면 정상임.
-(현재 화면은 썬팅필름을 활용하여 3지점의 눌림을 측정하는 프로젝트를 위해 제작된 화면이기 때문에, 본인 프로젝트에 알맞게 수정해야함.)
+** 현재 화면은 썬팅필름을 활용하여 3지점의 눌림을 측정하는 프로젝트를 위해 제작된 화면이기 때문에, 나중에 본인 프로젝트에 알맞게 수정해야함.
+** 6번 항목의 프로그램이 동작되고 있지 않으면, 실행을 눌려도 값이 변하지 않을 것 이다.
 ```
 
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/process8.jpg?raw=true)
+
+#### 9. 외부에서 접속가능하도록 하기
+
+```text
+외부 컴퓨터에서 요청을 보낼시 -> 공유기(공인 아이피:8081) -> 컴퓨터(내부아이피:8081) 으로 전달됨.
+
+일반적으로 외부 컴퓨터 -> 공유기로 접속시 컴퓨터로 연결되지 않음.
+공유기(공인아이피) -> 컴퓨터(내부아이피) 로 연결하기 위해서는 포트포워딩 이라는 것을 해야함.
+
+내부아이피는 CMD 창에서 ipconfig 입력 후 IPv4 주소 . . . . . . . . . : 192.168.25.44 에서 볼 수 있다.
+(192.168.25.44 는 컴퓨터마다 다른 값을 가질 가능성이 높다.)
+
+공인 아이피는 네이버 검색창에 "내 아이피" 라고 치면 볼 수 있다.
+
+** 공유기(58.123.34.5:8081) 로 들어오는 요청을 컴퓨터(192.168.25.44:8081) 으로 보내주는 것이 목표이고, 포트포워딩이라 부른다.
+** 위에서 사용했던 localhost 는 자기 컴퓨터의 IP를 의미한다.
+** 학교 WIFI 와 같이 개인의 소유가 아닌 네트워크에서는 포트포워딩을 시도하지 말자.
+```
+
+[포트포워딩 참고](https://m.blog.naver.com/seoulworkshop/221265052717)
+
+```text
+포트포워딩을 했다면, 
+공인 아이피를 알아낸 후(공인 아이피는 네이버 검색창에 "내 아이피" 라고 치면 볼 수 있다.)
+
+공인아이피를 기억하고, C:\optical_fiber\src\main\resources\static\js\index.js 파일을 열어준다.
+
+let 공인아이피 = '127.0.0.1'  부분에서 127.0.0.1 을 자신의 공인아이피로 바꿔준다.
+```
+
+#### 10. 테스트
+```text
+7번 과정을 통해 서버를 start 시킨 후
+핸드폰으로 인터넷 브라우저를 킨 후 http://공인아이피:8081 주소로 접속한다.
+```
