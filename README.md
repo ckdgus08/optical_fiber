@@ -7,10 +7,11 @@
 ```text
 다운로드 후 압축풀기, 다운로드 위치는 C:\
 
-* 다른 위치에 다운시 경로가 달라져 에러 발생 할 수 있음.
+* 압축을 푼 폴더 이름이 optical_fiber-main 인지 확인 후, 아니라면 이름을 바꿔준다.
+* 다른 위치에 압축을 풀 시 경로가 달라져 에러 발생 할 수 있다.
 ```
 
-![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/example_download.jpg?raw=true)
+![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/example_download.JPG?raw=true)
 
 #### 2. intellij(개발툴) 다운로드
 
@@ -44,10 +45,10 @@ Onedrive CDM21228_Setup 파일 설치 혹은 https://ftdichip.com/drivers/vcp-dr
 #### 6. FTDI 모듈에서 데이터 받아오는 프로그램 실행
 
 ```text
-C:\optical_fiber\moduleToFile - 바로가기.exe 파일 실행
+C:\optical_fiber-main\moduleToFile - 바로가기.exe 파일 실행
 
 모듈과 컴퓨터 사이에 SPI 통신을 하여 데이터를 수신함.
-수신된 데이터는 C:\optical_fiber\src\main\resources\static\sample_data\data.txt
+수신된 데이터는 C:\optical_fiber-main\src\main\resources\static\sample_data\data.txt
 에 기록됨. (계속해서 덮어쓰기 되는 방식이라, 항상 데이터는 한줄만 표시됨)
 
 * FTDI 모듈이 컴퓨터와 정상적으로 연결되어 있어야 프로그램이 정상작동함.
@@ -66,7 +67,7 @@ C:\optical_fiber\moduleToFile - 바로가기.exe 파일 실행
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/process5.jpg?raw=true)
 
 ```text
-optical_fiber/src/main/java/com/github/ckdgus08/OpticalFiberApplication 경로의
+optical_fiber-main/src/main/java/com/github/ckdgus08/OpticalFiberApplication 경로의
 OpticalFiberApplication 파일을 실행시킴
 ```
 
@@ -122,7 +123,7 @@ chrome 브라우저를 열고 http://localhost:8081/에 접속한다.
 포트포워딩을 했다면, 
 공인 아이피를 알아낸 후(공인 아이피는 네이버 검색창에 "내 아이피" 라고 치면 볼 수 있다.)
 
-공인아이피를 기억하고, C:\optical_fiber\src\main\resources\static\js\index.js 파일을 열어준다.
+공인아이피를 기억하고, C:\optical_fiber-main\src\main\resources\static\js\index.js 파일을 열어준다.
 
 let 공인아이피 = '127.0.0.1'  부분에서 '' 은 지우지말고 127.0.0.1 부분만 자신의 공인아이피로 바꿔준다.
 ```
