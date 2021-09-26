@@ -52,6 +52,8 @@ C:\optical_fiber-main\moduleToFile - 바로가기.exe 파일 실행
 에 기록됨. (계속해서 덮어쓰기 되는 방식이라, 항상 데이터는 한줄만 표시됨)
 
 * FTDI 모듈이 컴퓨터와 정상적으로 연결되어 있어야 프로그램이 정상작동함.
+* 경로를 찾을 수 없다는 문구가 뜨면, C:\optical_fiber-main\optical_fiber-main 위치에 있는건 아닌지 확인,
+ C:\optical_fiber-main 가 정상 경로임.
 * 프로그램이 열리지 않으면 USB 연결, 드라이버 설치 등을 의심해봐야함.
 ```
 
