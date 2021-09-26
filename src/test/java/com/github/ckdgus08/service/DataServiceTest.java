@@ -38,7 +38,6 @@ public class DataServiceTest {
         //given
 
         while (true) {
-
             File file = new File("C:\\Users\\ckdgu\\project\\optical_fiber\\src\\main\\resources\\static\\sample_data\\data.txt");
             List<String> list = Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.UTF_8);
 
