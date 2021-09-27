@@ -54,6 +54,8 @@ C:\optical_fiber-main\moduleToFile - 바로가기.exe 파일 실행
 * FTDI 모듈이 컴퓨터와 정상적으로 연결되어 있어야 프로그램이 정상작동함.
 * 경로를 찾을 수 없다는 문구가 뜨면, C:\optical_fiber-main\optical_fiber-main 혹은 C:\optical_fiber 위치에 있는건 아닌지 확인 C:\optical_fiber-main 가 정상 경로임. (사진의 optical_fiber 라고 된 것은 과거 사진임. optical_fiber-main이 맞는 것임)
 * 그래도 프로그램이 열리지 않으면 USB 연결, 드라이버 설치 등을 의심해봐야함.
+
+** 모듈이 없거나,, 등등의 이유로 해당 프로그램을 실행하지 않아도, 웹사이트 기능 동작 테스트 및 모바일기기 접속 테스트는 가능하다.
 ```
 
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/process1.jpg?raw=true)
