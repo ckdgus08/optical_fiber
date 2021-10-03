@@ -11,17 +11,12 @@ FTDI 모듈에서 빛의 세기에 따라 전압 측정 -> 전압을 0~4096 스�
 2. 모듈 -> 컴퓨터
 ```
 SPI 통신으로 컴퓨터로 전달됨.
-위 개발환경 셋팅의 6번에서 설명한 프로그램을 통해 원하는 형태로 데이터를 가공함.
-
-** 1분간 측정된 데이터를 파일로 만들고 싶다, 평균을 구하고 싶다, ... 등의 목적을 달성하려면
-c:\optical_fiber-main\moduleToFileByCPP\ConsoleApplication1.vcxproj 을 visualStudio로 열고 C 언어를 활용해 코딩해야한다.
-* [참고 코딩한 프로그램 .exe파일로 만들기](https://splendidlolli.tistory.com/25)
+프로그램을 이용해 0~4096 데이터를 가진 txt파일을 생성함.
 ```
 
 3. 컴퓨터 (웹 서버)
 ```
-해당 프로젝트는 Intellij 라는 IDE (통합 개발 환경)을 이용하고, java라는 언어, spring 이라는 프레임워크를 활용하여 웹서버를 띄우고 있다.
-위 과정에서 처리된 데이터파일을 이용하여 실시간으로 0~4096의 데이터를 웹페이지 상에서 활용 할 수 있다.
+위 과정에서 처리된 .txt 데이터파일을 읽어, 실시간으로 0~4096의 데이터를 웹페이지 상에서 활용 할 수 있다.
 
 optical_fiber/blob/main/src/main/resources/static/js/index.js
 optical_fiber/blob/main/src/main/resources/templates/index.html
@@ -98,14 +93,19 @@ C:\optical_fiber-main\moduleToFile - 바로가기.exe 파일 실행
 * FTDI 모듈이 컴퓨터와 정상적으로 연결되어 있어야 프로그램이 정상작동함.
 * 경로를 찾을 수 없다는 문구가 뜨면, C:\optical_fiber-main\optical_fiber-main 혹은 C:\optical_fiber 위치에 있는건 아닌지 확인 C:\optical_fiber-main 가 정상 경로임. (사진의 optical_fiber 라고 된 것은 과거 사진임. optical_fiber-main이 맞는 것임)
 * 그래도 프로그램이 열리지 않으면 USB 연결, 드라이버 설치 등을 의심해봐야함.
-
 ** 모듈이 없거나,, 등등의 이유로 해당 프로그램을 실행하지 않아도, 웹사이트 기능 동작 테스트 및 모바일기기 접속 테스트는 가능하다.
+** 1분간 측정된 데이터를 파일로 만들고 싶다, 평균을 구하고 싶다, ... 등의 목적을 달성하려면
+c:\optical_fiber-main\moduleToFileByCPP\ConsoleApplication1.vcxproj 을 visualStudio로 열고 C 언어를 활용해 코딩해야한다.
+** [참고 코딩한 프로그램 .exe파일로 만들기](https://splendidlolli.tistory.com/25)
 ```
 
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/process1.jpg?raw=true)
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/process2.jpg?raw=true)
 
 #### 7. Intellij를 이용해 프로젝트 파일 열기
+```
+해당 프로젝트는 Intellij 라는 IDE (통합 개발 환경)을 이용하고, java라는 언어, spring 이라는 프레임워크를 활용하여 웹서버를 띄우고 있다.
+```
 
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/process3.jpg?raw=true)
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/process4.jpg?raw=true)
