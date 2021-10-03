@@ -61,6 +61,8 @@ optical_fiber/blob/main/src/main/resources/templates/index.html
 
 [2. 인텔리제이 학생라이센스 사용](https://cheershennah.tistory.com/160)
 
+** 학생라이센스를 받지 않고 community(무료)버전을 설치해도 작동에 문제는 없음.
+
 #### 3. visual studio(c언어 관련 개발툴) 다운로드
 
 [참고 링크](https://cis.cju.ac.kr/2019/09/02/visual-studio-2019-install/)
@@ -160,6 +162,8 @@ chrome 브라우저를 열고 http://localhost:8081/에 접속한다.
 ** 공유기(58.123.34.5:8081) 로 들어오는 요청을 컴퓨터(192.168.25.44:8081) 으로 보내주는 것이 목표이고, 포트포워딩이라 부른다.
 ** 위에서 사용했던 localhost 는 자기 컴퓨터의 IP를 의미한다.
 ** 학교 WIFI 와 같이 개인의 소유가 아닌 네트워크에서는 포트포워딩을 시도하지 말자.
+
+* 현재 같은 공유기의 wifi에 연결되어 있으면 외부기기에서 접속되지 않는 버그가 있다. (만약 연결이 제대로 안된다면, wifi연결을 하지말고 데이터로 다시 시도해보자.)
 ```
 
 [포트포워딩 참고](https://m.blog.naver.com/seoulworkshop/221265052717)
