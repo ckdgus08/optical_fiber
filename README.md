@@ -42,9 +42,11 @@ optical_fiber/blob/main/src/main/resources/templates/index.html
 #### 1. source code download
 
 ```text
-다운로드 후 압축풀기, 다운로드 위치는 C:\
+다운로드 후 압축풀기, 다운로드 위치는 C:\ 로 하고,
 
-* 압축을 푼 폴더 이름이 optical_fiber-main 인지 확인 후, 아니라면 이름을 바꿔준다.
+폴더 이름을 optical_fiber-main -> optical_fiber 으로 바꿔준다.
+
+* 압축을 푼 폴더 이름이 optical_fiber 인지 확인 후, 아니라면 폴더 이름을 바꿔준다.
 * 다른 위치에 압축을 풀 시 경로가 달라져 에러 발생 할 수 있다.
 ```
 
