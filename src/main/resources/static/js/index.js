@@ -5,6 +5,7 @@ let 버튼_눌린상태_배열 = [
     [false, true, false], [false, false, true],
     [true, true, false], [true, false, true],
     [false, true, true], [true, true, true]]
+
 수신부_결과값_배열 = []
 
 버튼_현재상태 = [false, false, false]
@@ -12,6 +13,8 @@ let 버튼_눌린상태_배열 = [
 let 데이터_수신_상태 = false
 
 let timeoutId = 0;
+let round = 1
+let gamePlay = true
 
 function 버튼_위치_상태(index, status) {
     버튼_현재상태[index] = status
@@ -34,12 +37,14 @@ function SET_ABNORMAL() {
     버튼_위치_상태(0, false)
     버튼_위치_상태(1, false)
     버튼_위치_상태(2, false)
+
 }
 
 let temp = 0;
 
 function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데이터) {
     document.getElementById("target_value_result").innerText = 수신부데이터
+
     if (수신부데이터 >= MAX_VALUE) {
         SET_ABNORMAL();
         return
@@ -56,6 +61,37 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
             버튼_위치_상태(0, 버튼_눌린상태_배열[i][0])
             버튼_위치_상태(1, 버튼_눌린상태_배열[i][1])
             버튼_위치_상태(2, 버튼_눌린상태_배열[i][2])
+
+            let red
+            let green
+            let blue
+            if (버튼_현재상태[0]) {
+                red = 255
+            } else {
+                red = 0
+            }
+            if (버튼_현재상태[1]) {
+                green = 255
+            } else {
+                green = 0
+            }
+            if (버튼_현재상태[2]) {
+                blue = 255
+            } else {
+                blue = 0
+            }
+
+            document.getElementById("plate").style.backgroundColor = "rgb(" + red + "," + green + "," + blue + ")"
+            let firstItem = document.getElementsByClassName("blind")
+            if (firstItem.length !== 0) {
+                if (firstItem[0].style.backgroundColor === document.getElementById("plate").style.backgroundColor) {
+                    if ((round - 1).toString() === firstItem[0].id) {
+                        gamePlay = true;
+                        round++;
+                    }
+                    firstItem[0].classList.remove("blind")
+                }
+            }
 
             document.getElementById("target_value_status").classList.add("ok")
             document.getElementById("target_value_status").classList.remove("no")
@@ -256,9 +292,52 @@ function updateChart(value) {
     chart.update();
 }
 
-window.onload = function () {
-    initChart()
+function initTarget() {
+    let red
+    let green
+    let blue
+    for (let i = 0; i < 20; i++) {
+        let random = 버튼_눌린상태_배열[Math.round(Math.random() * 6 + 1)]
+        if (random[0]) {
+            red = 255
+        } else {
+            red = 0
+        }
+        if (random[1]) {
+            green = 255
+        } else {
+            green = 0
+        }
+        if (random[2]) {
+            blue = 255
+        } else {
+            blue = 0
+        }
+        document.getElementById("target").innerHTML += "<div id='" + i + "' class='target temp hidden' style='background-color: rgb(" + red + "," + green + "," + blue + ")'></div>"
+    }
+}
 
+function doGame() {
+    let target = document.getElementsByClassName("target")
+    let target_blind = document.getElementsByClassName("target.blind")
+    if (gamePlay && (target_blind.length === 0)) {
+        if (!버튼_현재상태[0] && !버튼_현재상태[1] && !버튼_현재상태[2]) {
+            gamePlay = false;
+            for (let i = 0; i < round; i++) {
+                target.item(i).classList.remove("hidden")
+                target.item(i).classList.remove("blind")
+                setTimeout(function () {
+                    target.item(i).classList.add("blind")
+                }, 3000)
+            }
+        }
+    }
+}
+
+window.onload = function () {
+
+    initTarget()
+    initChart()
     document.getElementById("dx").onchange = function () {
         if (!목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()) {
             alert("목표 dx값을 조정해주세요.")
@@ -292,6 +371,7 @@ window.onload = function () {
                     updateChart(데이터[0])
                     목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
                     수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
+                    doGame()
                 }, 250
             )
         }

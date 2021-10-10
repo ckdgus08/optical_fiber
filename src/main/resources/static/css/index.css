@@ -22,6 +22,7 @@
     background: whitesmoke;
     text-align: center;
 }
+
 .slide__main-button {
     display: flex;
     height: 100px;
@@ -42,6 +43,7 @@
     background: whitesmoke;
     text-align: center;
 }
+
 .slide__main-block {
     display: flex;
     height: 30px;
@@ -122,5 +124,22 @@
 }
 
 div#target_value_result {
-font-size: 30px;
+    font-size: 30px;
+}
+
+#plate {
+    width: 50%;
+    background-color: rgb(255, 255, 0);
+}
+
+.target {
+    display: inline;
+    width: 50px;
+    margin: 5px;
+    height: 50px;
+    border: solid black 1px;
+}
+
+.blind {
+    background-image: url("../image/blind.png");
 }

@@ -16,10 +16,10 @@ public class DataApiController {
 
     @GetMapping("/api/singleData")
     public List<String> getSingleData() throws IOException {
-        File file = new File("C:\\optical_fiber-main\\src\\main\\resources\\static\\sample_data\\data.txt");
+        File file = new File("C:\\optical_fiber\\src\\main\\resources\\static\\sample_data\\data.txt");
         List<String> list = Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.UTF_8);
 
-        if(list.size() > 0) {
+        if (list.size() > 0) {
             return Collections.singletonList(list.get(0));
         } else {
             return Collections.singletonList("0");
