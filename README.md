@@ -47,7 +47,7 @@ optical_fiber/blob/main/src/main/resources/templates/index.html
 폴더 이름을 optical_fiber-main -> optical_fiber 으로 바꿔준다.
 
 * 압축을 푼 폴더 이름이 optical_fiber 인지 확인 후, 아니라면 폴더 이름을 바꿔준다.
-* 다른 위치에 압축을 풀 시 경로가 달라져 에러 발생 할 수 있다.
+* 다른 위치에 압축을 풀거나 파일이름이 다를 경우, 경로가 달라져 에러 발생 할 수 있다.
 ```
 
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/example_download.JPG?raw=true)
