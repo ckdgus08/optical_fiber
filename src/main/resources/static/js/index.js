@@ -296,8 +296,15 @@ function initTarget() {
     let red
     let green
     let blue
+    let cache = [false, false, false];
     for (let i = 0; i < 20; i++) {
         let random = 버튼_눌린상태_배열[Math.round(Math.random() * 6 + 1)]
+
+        if (cache[0] === random[0] && cache[1] === random[1] && cache[2] === random[2]) {
+            i--
+            continue
+        }
+
         if (random[0]) {
             red = 255
         } else {
@@ -313,6 +320,7 @@ function initTarget() {
         } else {
             blue = 0
         }
+        cache = random
         document.getElementById("target").innerHTML += "<div id='" + i + "' class='target temp hidden' style='background-color: rgb(" + red + "," + green + "," + blue + ")'></div>"
     }
 }
@@ -334,10 +342,45 @@ function doGame() {
     }
 }
 
+function initTimer() {
+    const timer = document.querySelector('.js-timer'),
+        startBtn = document.getElementById("target_value");
+
+    startBtn.addEventListener('click', startButton);
+    let TIME = 300;
+    let cron; // clearInterval을 위한 변수
+
+    function startButton() {
+        updateTimer();
+        stopButton();
+        cron = setInterval(updateTimer, 1000);
+    }
+
+    function stopButton() {
+        clearInterval(cron);
+    }
+
+    function updateTimer() {
+        const checkMinutes = Math.floor(TIME / 60);
+        const seconds = TIME % 60;
+        const minutes = checkMinutes % 60;
+
+        timer.innerText = `${
+            minutes < 10 ? `0${minutes}` : minutes}:${
+            seconds < 10 ? `0${seconds}` : seconds}`;
+        TIME--;
+        if (TIME === -1) {
+            alert("게임 종료!!! 현재 점수 : " + round + "점")
+            stopButton()
+        }
+    }
+}
+
 window.onload = function () {
 
     initTarget()
     initChart()
+    initTimer()
     document.getElementById("dx").onchange = function () {
         if (!목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()) {
             alert("목표 dx값을 조정해주세요.")
