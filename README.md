@@ -18,8 +18,8 @@ SPI 통신으로 컴퓨터로 전달됨.
 ```
 위 과정에서 처리된 .txt 데이터파일을 읽어, 실시간으로 0~4096의 데이터를 웹페이지 상에서 활용 할 수 있다.
 
-optical_fiber/blob/main/src/main/resources/static/js/index.js
-optical_fiber/blob/main/src/main/resources/templates/index.html
+optical_fiber-main/src/main/resources/static/js/index.js
+optical_fiber-main/src/main/resources/templates/index.html
 
 에 미리 작성된 내용을 활용해 적절히 수정하여 사용하면 된다.
 (현재는 시작버튼을 눌리면, 0.25초마다 data.txt 파일에 기록된 데이터를 계속해서 가져와 처리하도록 작성되어있다.)
@@ -44,10 +44,13 @@ optical_fiber/blob/main/src/main/resources/templates/index.html
 ```text
 다운로드 후 압축풀기, 다운로드 위치는 C:\ 로 하고,
 
-폴더 이름을 optical_fiber-main -> optical_fiber 으로 바꿔준다.
+최종 경로는 c:\optical_fiber-main/src/main/ 이런식으로 되어야한다.
 
-* 압축을 푼 폴더 이름이 optical_fiber 인지 확인 후, 아니라면 폴더 이름을 바꿔준다.
-* 다른 위치에 압축을 풀거나 파일이름이 다를 경우, 경로가 달라져 에러 발생 할 수 있다.
+c:\optical_fiber-main/optical_fiber-main/src/main/ 이런식으로 되면 안된다.
+
+* 압축을 푼 폴더 이름이 optical_fiber-main 인지 확인 후, 아니라면 폴더 이름을 바꿔준다.
+* _ - 가 섞여있으므로 잘 확인하자!
+* 파일이름이 다를 경우, 경로가 달라져 에러 발생 할 수 있다.
 ```
 
 ![이미지](https://github.com/ckdgus08/optical_fiber/blob/main/src/main/resources/static/image/example_download.JPG?raw=true)
