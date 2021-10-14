@@ -180,7 +180,7 @@ int main(int argc, char** argv) {
 		printf("\tvolt: %d    \t", 256 * rx_buffer[1] + rx_buffer[2]);
 	
 		// 파일 쓰기 준비
-		std::ofstream dataFile("C:/optical_fiber/src/main/resources/static/sample_data/data.txt", std::ios::trunc);
+		std::ofstream dataFile("C:/optical_fiber-main/src/main/resources/static/sample_data/data.txt", std::ios::trunc);
 
 		if (dataFile.is_open()) {
 			dataFile << 256 * rx_buffer[1] + rx_buffer[2] << "\n";
