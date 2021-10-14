@@ -88,6 +88,7 @@ function 수신부_데이터로_어느버튼_눌렸는지_역추적(수신부데
                     if ((round - 1).toString() === firstItem[0].id) {
                         gamePlay = true;
                         round++;
+                        document.getElementById("round").innerText = round.toString()
                     }
                     firstItem[0].classList.remove("blind")
                 }
@@ -336,21 +337,21 @@ function doGame() {
                 target.item(i).classList.remove("blind")
                 setTimeout(function () {
                     target.item(i).classList.add("blind")
-                }, 3000)
+                }, 3100 - (round * 200))
             }
         }
     }
 }
 
 function initTimer() {
-    const timer = document.querySelector('.js-timer'),
-        startBtn = document.getElementById("target_value");
+    const timer = document.querySelector('.js-timer');
 
-    startBtn.addEventListener('click', startButton);
     let TIME = 300;
     let cron; // clearInterval을 위한 변수
 
-    function startButton() {
+    start();
+
+    function start() {
         updateTimer();
         stopButton();
         cron = setInterval(updateTimer, 1000);
@@ -371,7 +372,7 @@ function initTimer() {
         TIME--;
         if (TIME === -1) {
             alert("게임 종료!!! 현재 점수 : " + round + "점")
-            stopButton()
+            location.reload()
         }
     }
 }
@@ -380,7 +381,12 @@ window.onload = function () {
 
     initTarget()
     initChart()
-    initTimer()
+
+    document.getElementById("init_value").onchange = function () {
+        if (!목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()) {
+            alert("목표 dx값을 조정해주세요.")
+        }
+    }
     document.getElementById("dx").onchange = function () {
         if (!목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()) {
             alert("목표 dx값을 조정해주세요.")
@@ -398,25 +404,29 @@ window.onload = function () {
     document.getElementById("target_value").onclick = function () {
 
         if (데이터_수신_상태) {
-            document.getElementById("target_value").innerText = "시작"
-            데이터_수신_상태 = false
-            clearTimeout(timeoutId)
-            document.getElementById("target_value_result").innerText = "수신 멈춤"
-            document.getElementById("target_value_status").classList.remove("ok")
-            document.getElementById("target_value_status").classList.remove("no")
-            document.getElementById("target_value_status").innerText = ""
+            location.reload()
         } else {
             document.getElementById("target_value").innerText = "중단"
             데이터_수신_상태 = true
-            timeoutId = setInterval(
-                function exec() {
-                    let 데이터 = 실시간_데이터_가져오기()
-                    updateChart(데이터[0])
-                    목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
-                    수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
-                    doGame()
-                }, 250
-            )
+
+            document.getElementById("info_message").click()
+            setTimeout(function () {
+                timeoutId = setInterval(
+                    function exec() {
+                        let 데이터 = 실시간_데이터_가져오기()
+                        updateChart(데이터[0])
+                        목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
+                        수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
+                        doGame()
+                    }, 250
+                );
+                if (document.getElementById("exampleModal").classList.contains("show")) {
+                    document.getElementById("info_message").click()
+                }
+                initTimer()
+            }, 5000)
+
         }
+
     }
 }
