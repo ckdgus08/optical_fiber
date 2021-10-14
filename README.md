@@ -61,8 +61,6 @@ c:\optical_fiber-main/optical_fiber-main/src/main/ 이런식으로 되면 안된
 
 [2. 인텔리제이 학생라이센스 사용](https://cheershennah.tistory.com/160)
 
-** 학생라이센스를 받지 않고 community(무료)버전을 설치해도 작동에 문제는 없음.
-
 #### 3. visual studio(c언어 관련 개발툴) 다운로드
 
 [참고 링크](https://cis.cju.ac.kr/2019/09/02/visual-studio-2019-install/)
