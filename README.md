@@ -61,8 +61,6 @@ c:\optical_fiber-main/optical_fiber-main/src/main/ 이런식으로 되면 안된
 
 [2. 인텔리제이 학생라이센스 사용](https://cheershennah.tistory.com/160)
 
-** 학생라이센스를 받지 않고 community(무료)버전을 설치해도 작동에 문제는 없음.
-
 #### 3. visual studio(c언어 관련 개발툴) 다운로드
 
 [참고 링크](https://cis.cju.ac.kr/2019/09/02/visual-studio-2019-install/)
@@ -84,7 +82,7 @@ Onedrive CDM21228_Setup 파일 설치 혹은 https://ftdichip.com/drivers/vcp-dr
  포트(COM & LP) - USB serial Port가 나옵니다.
 ```
 
-[그림파일 참고](https://seoultechackr-my.sharepoint.com/:w:/r/personal/dkim_seoultech_ac_kr/_layouts/15/Doc.aspx?sourcedoc=%7B97B085EA-5BE2-4192-9639-03A38A203C89%7D&file=FTDI%20%EC%99%80%20Labview%20%EC%97%B0%EB%8F%99%EB%B2%95.docx&action=default&mobileredirect=true)
+[그림파일 참고 - FTDI 와 Labview 연동법.docx](https://seoultechackr-my.sharepoint.com/personal/dkim_seoultech_ac_kr/_layouts/15/onedrive.aspx?originalPath=aHR0cHM6Ly9zZW91bHRlY2hhY2tyLW15LnNoYXJlcG9pbnQuY29tLzpmOi9nL3BlcnNvbmFsL2RraW1fc2VvdWx0ZWNoX2FjX2tyL0V1NlpvLTdiaGdGUHVfZVBwNGVKMjdVQllBZlNUaGhxRU5ubUNwTjJENXdUOUE%5FcnRpbWU9bnhhX2QwS1AyVWc&id=%2Fpersonal%2Fdkim%5Fseoultech%5Fac%5Fkr%2FDocuments%2FClass%2FCapstone%20Design%2F2021%2F1%ED%95%99%EA%B8%B0%2F%EA%B4%80%EB%A0%A8%20%EB%85%BC%EB%AC%B8%20%EB%B0%8F%20%EC%B0%B8%EA%B3%A0%20%EC%9E%90%EB%A3%8C%2F%EC%BD%94%EB%94%A9%20%EC%9E%90%EB%A3%8C)
 
 #### 6. FTDI 모듈에서 데이터 받아오는 프로그램 실행
 
