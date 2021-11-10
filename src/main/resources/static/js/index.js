@@ -346,7 +346,7 @@ function doGame() {
 function initTimer() {
     const timer = document.querySelector('.js-timer');
 
-    let TIME = 180;
+    let TIME = 2;
     let cron; // clearInterval을 위한 변수
 
     start();
@@ -409,8 +409,6 @@ window.onload = function () {
             document.getElementById("target_value").innerText = "중단"
             데이터_수신_상태 = true
 
-            document.getElementById("info_message").click()
-
             timeoutId = setInterval(
                 function exec() {
                     let 데이터 = 실시간_데이터_가져오기()
@@ -418,10 +416,8 @@ window.onload = function () {
                     목표하는_dx값이_구간의_최소dx보다_큰지_체크하기()
                     수신부_데이터로_어느버튼_눌렸는지_역추적(데이터)
                     doGame()
-                }, 250
-            );
+                }, 250);
             initTimer()
         }
-
     }
 }
