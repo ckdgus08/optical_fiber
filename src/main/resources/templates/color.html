@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" th:href="@{/css/index.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-slider.css}">
+<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/chart.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+
+<div style="position: absolute; top:30% ; left: 50%; transform: translate(-50%)">
+    <div style="display: flex">
+        <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none;">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">=</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
+    </div>
+
+    <div style="display: flex">
+        <div style="height: 20px"></div>
+    </div>
+
+    <div style="display: flex">
+        <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none;">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">=</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
+    </div>
+    <div style="display: flex">
+        <div style="height: 20px"></div>
+    </div>
+    <div style="display: flex">
+        <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none;">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">=</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
+    </div>
+    <div style="display: flex">
+        <div style="height: 20px"></div>
+    </div>
+    <div style="display: flex">
+        <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
+        <div class="target_sample" style="text-align: center; border: none;">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">=</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,0)"></div>
+    </div>
+    <div style="display: flex">
+        <div style="height: 20px"></div>
+    </div>
+    <div style="display: flex">
+        <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none;">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">=</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,0,255)"></div>
+    </div>
+    <div style="display: flex">
+        <div style="height: 20px"></div>
+    </div>
+    <div style="display: flex">
+        <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none;">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">=</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(0,255,255)"></div>
+    </div>
+    <div style="display: flex">
+        <div style="height: 20px"></div>
+    </div>
+    <div style="display: flex">
+        <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
+        <div class="target_sample" style="text-align: center; border: none;">
+            <div style="position: relative; top: 25%;">+</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
+        <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
+            <div style="position: relative; top: 25%;">=</div>
+        </div>
+        <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
+    </div>
+</div>

@@ -11,4 +11,9 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("color")
+    public String color() {
+        return "color";
+    }
+
 }

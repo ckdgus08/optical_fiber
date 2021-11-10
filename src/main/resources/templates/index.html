@@ -42,6 +42,7 @@
 </div>
 
 <div class="slide__sub-block" id="target">
+
 </div>
 
 <div class="slide__sub-block">
@@ -53,12 +54,20 @@
         </button>
     </div>
     <div style="width: 50%; text-align: center">
-        <span class="timer js-timer" style="font-size: 70px">05:00</span>
+        <span class="timer js-timer" style="font-size: 70px">03:00</span>
     </div>
-    <div style="width: 30%; text-align: center">
+    <div style="width: 15%; text-align: center">
         <button class="btn border-dark border-3" id="target_value" type="number"
                 style="width: 50%; height: 100%; font-size: 30px">시작
         </button>
+    </div>
+    <div style="width: 15%; text-align: center">
+        <a href="color" target="_blank" style="color: black">
+            <button class="btn border-dark border-3" type="number"
+                    style="width: 50%; height: 100%; font-size: 15px">
+                색상조합
+            </button>
+        </a>
     </div>
 </div>
 <div id="plate" class="hidden"></div>
@@ -104,132 +113,3 @@
 <div class="slide__main-chart">
     <canvas id="myChart" width="800px" height="150px"></canvas>
 </div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-body" style="white-space: pre-line">
-
-                <div style="display: flex">
-                    <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none;">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">=</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
-                </div>
-
-                <div style="display: flex">
-                    <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none;">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">=</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
-                </div>
-
-                <div style="display: flex">
-                    <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none;">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">=</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
-                </div>
-
-                <div style="display: flex">
-                    <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
-                    <div class="target_sample" style="text-align: center; border: none;">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">=</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,0)"></div>
-                </div>
-
-                <div style="display: flex">
-                    <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none;">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">=</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,0,255)"></div>
-                </div>
-
-                <div style="display: flex">
-                    <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none;">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">=</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(0,255,255)"></div>
-                </div>
-
-                <div style="display: flex">
-                    <div class="target_sample" style="background-color: rgb(255,0,0)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(0,255,0)"></div>
-                    <div class="target_sample" style="text-align: center; border: none;">
-                        <div style="position: relative; bottom: 25%;">+</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(0,0,255)"></div>
-                    <div class="target_sample" style="text-align: center; border: none; vertical-align: middle">
-                        <div style="position: relative; bottom: 25%;">=</div>
-                    </div>
-                    <div class="target_sample" style="background-color: rgb(255,255,255)"></div>
-                </div>
-
-                <div style="text-align: center">
-                    <span style="font-weight: 1100; color: red; font-size: 30px">5초 후에 게임을 시작합니다.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<li class="nav-item hidden">
-    <div id="info_message" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">도움말</div>
-</li>
