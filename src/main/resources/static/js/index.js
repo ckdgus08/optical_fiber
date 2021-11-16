@@ -346,7 +346,7 @@ function doGame() {
 function initTimer() {
     const timer = document.querySelector('.js-timer');
 
-    let TIME = 2;
+    let TIME = 180;
     let cron; // clearInterval을 위한 변수
 
     start();
